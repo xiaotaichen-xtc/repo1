@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--    1.无参构造方法进行实例化-->
+<!--在spring配置文件中配置UserDaoImpl-->
+<!--    id唯一标识  class配置类全路径-->
+<!--<bean id="userDao" class="com.lagou.dao.impl.UserDaoImpl" init-method="init" destroy-method="destory"></bean>-->
+<!--    <bean id="userDao2" class="com.lagou.dao.impl.UserDaoImpl2" scope="prototype"></bean>-->
+
+
+<!--    2.工厂静态方法进行实例化-->
+   <!-- <bean id="userDao" class="com.lagou.factory.StaticFactoryBean" factory-method="createUserDao" >-->  <!--把该方法的值返回容器中-->
+
+    <!--    3.工厂静态方法进行实例化-->
+<!--    <bean id="dynamicFactoryBean" class="com.lagou.factory.DynamicFactoryBean"></bean>-->
+<!--    <bean id="userDao" factory-bean="dynamicFactoryBean" factory-method="createUserDao"></bean>-->
+
+<!--    无参构造-->
+    <bean id="userDao" class="com.lagou.dao.impl.UserDaoImpl">
+        <property name="userName" value="子慕"></property>
+        <property name="age" value="18"></property>
+    </bean>
+<!--    <bean id="userService" class="com.lagou.seivice.impl.UserServiceImpl">-->
+<!--&lt;!&ndash;    index="0"表示有参构造的第一个参数进行赋值  type=""指定参数的权限定名 ref="userDao" 引用ioc的哪个对象注入进来&ndash;&gt;-->
+<!--&lt;!&ndash;        <constructor-arg index="0" type="com.lagou.dao.IUserDao" ref="userDao"/>&ndash;&gt;-->
+
+<!--&lt;!&ndash;        第2种配置方法&ndash;&gt;-->
+<!--&lt;!&ndash;        name="iUserDao"表示构造里面的参数   ref="userDao" 引用ioc的哪个对象注入进来&ndash;&gt;-->
+<!--        <constructor-arg name="iUserDao" ref="userDao"></constructor-arg>-->
+
+<!--    set方法进行依赖注入-->
+<bean id="userService" class="com.lagou.seivice.impl.UserServiceImpl">
+<!--    name="iUserDao"  是set首字母小写-->
+    <property name="iUserDao" ref="userDao"></property>
+
+</bean>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</beans>
